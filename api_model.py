@@ -1,5 +1,6 @@
 from flask import Flask,request,jsonify
 import models
+import os
 # from importnb import Notebook # ใช้ importnb เพื่อ models .ipynb
 
 # # นำเข้า models.ipynb
@@ -28,4 +29,5 @@ def predict():
     return jsonify(predictions)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    port = int(os.environ.get('PORT', 5000))  # ดึงพอร์ตจากตัวแปรสภาพแวดล้อมหรือใช้ 5000 ถ้าไม่มีการกำหนด
+    app.run(host='0.0.0.0', port=port)
